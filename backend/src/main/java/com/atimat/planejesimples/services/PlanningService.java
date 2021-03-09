@@ -19,4 +19,10 @@ public class PlanningService {
 	public List<Planning> findAll(){
 		return repository.findAll();
 	}
+
+	@Transactional(readOnly = true)
+	public Planning findById(Long id) {
+		Planning obj = repository.findById(id).orElse(null);
+		return obj;
+	}
 }
