@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.atimat.planejesimples.dto.UserDTO;
 import com.atimat.planejesimples.entities.User;
+import com.atimat.planejesimples.exceptions.ResourceNotFoundException;
 import com.atimat.planejesimples.respositories.UserRepository;
 
 @Service
@@ -27,7 +28,7 @@ public class UserService {
 	@Transactional(readOnly = true)
 	public UserDTO findById(Long id){
 		Optional<User> obj = repository.findById(id);
-		User entity = obj.get();
+		User entity = obj.orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
 		return new UserDTO(entity);
 	}
 }

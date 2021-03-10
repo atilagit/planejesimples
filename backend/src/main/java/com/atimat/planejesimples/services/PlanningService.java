@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.atimat.planejesimples.dto.PlanningDTO;
 import com.atimat.planejesimples.entities.Planning;
+import com.atimat.planejesimples.exceptions.ResourceNotFoundException;
 import com.atimat.planejesimples.respositories.PlanningRepository;
 
 @Service
@@ -27,7 +28,7 @@ public class PlanningService {
 	@Transactional(readOnly = true)
 	public PlanningDTO findById(Long id) {
 		Optional<Planning> obj = repository.findById(id);
-		Planning entity = obj.get();
+		Planning entity = obj.orElseThrow(() -> new ResourceNotFoundException("Planejamento não encontrado"));
 		return new PlanningDTO(entity);
 	}
 }
