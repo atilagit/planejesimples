@@ -1,6 +1,7 @@
 package com.atimat.planejesimples.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,8 @@ public class UserService {
 	
 	@Transactional(readOnly = true)
 	public UserDTO findById(Long id){
-		User obj = repository.findById(id).orElse(null);
-		return new UserDTO(obj);
+		Optional<User> obj = repository.findById(id);
+		User entity = obj.get();
+		return new UserDTO(entity);
 	}
 }

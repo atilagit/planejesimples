@@ -1,6 +1,7 @@
 package com.atimat.planejesimples.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,8 @@ public class PlanningService {
 
 	@Transactional(readOnly = true)
 	public PlanningDTO findById(Long id) {
-		Planning obj = repository.findById(id).orElse(null);
-		return new PlanningDTO(obj);
+		Optional<Planning> obj = repository.findById(id);
+		Planning entity = obj.get();
+		return new PlanningDTO(entity);
 	}
 }
