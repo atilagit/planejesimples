@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.atimat.planejesimples.entities.Planning;
+import com.atimat.planejesimples.dto.PlanningDTO;
 import com.atimat.planejesimples.services.PlanningService;
 
 @RestController
@@ -20,14 +20,14 @@ public class PlanningResource {
 	private PlanningService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Planning>> findAll(){
-		List<Planning> list = service.findAll();
+	public ResponseEntity<List<PlanningDTO>> findAll(){
+		List<PlanningDTO> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Planning> findById(@PathVariable Long id){
-		Planning obj = service.findById(id);
+	public ResponseEntity<PlanningDTO> findById(@PathVariable Long id){
+		PlanningDTO obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }
