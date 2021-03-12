@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.atimat.planejesimples.dto.PlanningDTO;
 import com.atimat.planejesimples.entities.Planning;
-import com.atimat.planejesimples.exceptions.ResourceNotFoundException;
 import com.atimat.planejesimples.respositories.PlanningRepository;
+import com.atimat.planejesimples.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class PlanningService {

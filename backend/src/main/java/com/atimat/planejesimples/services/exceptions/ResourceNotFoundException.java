@@ -1,4 +1,4 @@
-package com.atimat.planejesimples.exceptions;
+package com.atimat.planejesimples.services.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
