@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,4 +46,23 @@ public class PlanningService {
 		entity = repository.save(entity);
 		return new PlanningDTO(entity);
 	}
+
+	@Transactional
+	public PlanningDTO update(Long id, PlanningDTO dto) {
+		try {
+			Planning entity = repository.getOne(id);
+			updateEntity(dto, entity);
+			entity = repository.save(entity);
+			return new PlanningDTO(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id não encontrado " + id);
+		}
+	}
+
+	private void updateEntity(PlanningDTO dto, Planning entity) {
+		entity.setInitialDate(dto.getInitialDate());
+		entity.setFinalDate(dto.getFinalDate());
+		entity.setExpectedEntry(dto.getExpectedEntry());
+		entity.setRealEntry(dto.getRealEntry());
+	}	
 }
