@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +17,7 @@ import com.atimat.planejesimples.entities.Planning;
 import com.atimat.planejesimples.entities.User;
 import com.atimat.planejesimples.respositories.PlanningRepository;
 import com.atimat.planejesimples.respositories.UserRepository;
+import com.atimat.planejesimples.services.exceptions.DatabaseException;
 import com.atimat.planejesimples.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -58,11 +61,21 @@ public class PlanningService {
 			throw new ResourceNotFoundException("Id não encontrado " + id);
 		}
 	}
+	
+	public void delete(Long id) {
+		try {
+			repository.deleteById(id);
+		}catch(EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException("Id não encontrado " + id);
+		}catch(DataIntegrityViolationException e) {
+			throw new DatabaseException("Violação de integridade");
+		}
+	}
 
 	private void updateEntity(PlanningDTO dto, Planning entity) {
 		entity.setInitialDate(dto.getInitialDate());
 		entity.setFinalDate(dto.getFinalDate());
 		entity.setExpectedEntry(dto.getExpectedEntry());
 		entity.setRealEntry(dto.getRealEntry());
-	}	
+	}
 }
