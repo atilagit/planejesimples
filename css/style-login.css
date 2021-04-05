@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+:root{
+    --green: #38c2c0;
+    --lightGreen: #EFFFFF;
+    --white: #ffff;
+}
+
+body{
+    background-color: #eeeeee;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.box{
+    width: 30%;
+    height: 450px;
+    background-color: #fff;
+    margin: 50px auto;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgb(175, 175, 175);
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 5px;
+}
+
+.header img{
+    height: 40px;
+    padding: 5px;
+}
+
+.header p{
+    font-size: 25px;
+    color: var(--green);
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login p{
+    color: rgba(0, 0, 0, 0.712);
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.login .verificacao{
+    width: 250px;
+    height: 25px;
+    border-radius: 5px;
+    border-color: rgba(0, 0, 0, 0.212);
+    transition: border-color 150ms cubic-bezier(.4,0,.2,1);
+    user-select: none;
+}
+
+::-webkit-input-placeholder,
+.login input .verificacao{
+    color: rgba(0, 0, 0, 0.507);
+}
+
+.login input, button{
+    margin: 10px 0;
+}
+
+.login button{
+    border: 1px solid var(--green);
+    background: transparent;
+    padding: 8px 40px;
+    cursor: pointer;
+    margin-left: 30px;
+    color: var(--green);
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.login button:hover{
+    transition: background, color 0.3s;
+    background: var(--green);
+    color: white;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+}
+
+.footer a{
+    margin: 5px auto;
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--green);
+    font-weight: bold;
+}
