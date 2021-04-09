@@ -2,6 +2,8 @@ package com.atimat.planejesimples.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.atimat.planejesimples.entities.Planning;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,6 +22,8 @@ public class PlanningDTO implements Serializable {
 	private Double expectedEntry;
 	private Double realEntry;
 	private UserDTO user;
+	
+	private List<ItemDTO> items = new ArrayList<>();
 	
 	public PlanningDTO() {
 	}
@@ -41,6 +45,7 @@ public class PlanningDTO implements Serializable {
 		this.expectedEntry = entity.getExpectedEntry();
 		this.realEntry = entity.getRealEntry();
 		this.user = new UserDTO(entity.getUser());
+		entity.getItems().forEach(item -> this.items.add(new ItemDTO(item)));
 	}
 
 	public Long getId() {
@@ -89,5 +94,9 @@ public class PlanningDTO implements Serializable {
 
 	public void setUser(UserDTO user) {
 		this.user = user;
+	}
+
+	public List<ItemDTO> getItems() {
+		return items;
 	}
 }
