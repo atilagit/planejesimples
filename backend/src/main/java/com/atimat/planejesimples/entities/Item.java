@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -26,16 +28,21 @@ public class Item implements Serializable{
 	private Double expectancy;
 	private Double reality;
 	
+	@ManyToOne
+	@JoinColumn(name = "planning_id")
+	private Planning planning;
+	
 	public Item() {
 	}
 
-	public Item(Long id, String title, Instant dueDate, Double expectancy, Double reality) {
+	public Item(Long id, String title, Instant dueDate, Double expectancy, Double reality, Planning planning) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.dueDate = dueDate;
 		this.expectancy = expectancy;
 		this.reality = reality;
+		this.planning = planning;
 	}
 
 	public Long getId() {
@@ -76,6 +83,14 @@ public class Item implements Serializable{
 
 	public void setReality(Double reality) {
 		this.reality = reality;
+	}
+
+	public Planning getPlanning() {
+		return planning;
+	}
+
+	public void setPlanning(Planning planning) {
+		this.planning = planning;
 	}
 
 	@Override
