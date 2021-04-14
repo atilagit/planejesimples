@@ -14,7 +14,6 @@ public class ItemDTO {
 	private Instant dueDate;
 	private Double expectancy;
 	private Double reality;
-	private PlanningDTO planning;
 	
 	public ItemDTO() {
 	}
@@ -25,7 +24,6 @@ public class ItemDTO {
 		this.dueDate = dueDate;
 		this.expectancy = expectancy;
 		this.reality = reality;
-		this.planning = planning;
 	}
 	
 	public ItemDTO(Item entity) {
@@ -74,13 +72,5 @@ public class ItemDTO {
 
 	public void setReality(Double reality) {
 		this.reality = reality;
-	}
-
-	public PlanningDTO getPlanning() {
-		return planning;
-	}
-
-	public void setPlanning(PlanningDTO planning) {
-		this.planning = planning;
 	}
 }
