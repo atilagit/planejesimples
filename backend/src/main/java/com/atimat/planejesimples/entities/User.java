@@ -31,7 +31,7 @@ public class User implements Serializable {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
-	private List<ItemName> itemName = new ArrayList<>();
+	private List<ItemName> itemNames = new ArrayList<>();
 
 	public User() {
 	}
@@ -77,6 +77,10 @@ public class User implements Serializable {
 
 	public List<Planning> getPlannings() {
 		return plannings;
+	}
+	
+	public List<ItemName> getItemNames() {
+		return itemNames;
 	}
 
 	@Override
