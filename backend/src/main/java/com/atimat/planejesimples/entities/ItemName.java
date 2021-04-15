@@ -15,21 +15,21 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_itemName")
-public class ItemName implements Serializable{
+public class ItemName implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	@OneToMany(mappedBy = "itemName")
 	private List<Item> items = new ArrayList<>();
-	
+
 	public ItemName() {
 	}
 
@@ -53,6 +53,18 @@ public class ItemName implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Item> getItems() {
+		return items;
 	}
 
 	@Override

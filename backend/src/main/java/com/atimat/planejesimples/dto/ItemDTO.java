@@ -1,11 +1,13 @@
 package com.atimat.planejesimples.dto;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 import com.atimat.planejesimples.entities.Item;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class ItemDTO {
+public class ItemDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	private String title;
