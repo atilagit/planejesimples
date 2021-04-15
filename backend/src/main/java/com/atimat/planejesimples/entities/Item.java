@@ -32,6 +32,10 @@ public class Item implements Serializable{
 	@JoinColumn(name = "planning_id")
 	private Planning planning;
 	
+	@ManyToOne
+	@JoinColumn(name = "itemName_id")
+	private ItemName itemName;
+	
 	public Item() {
 	}
 
