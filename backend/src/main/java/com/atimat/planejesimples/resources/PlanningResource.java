@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.atimat.planejesimples.dto.PlanningDTO;
+import com.atimat.planejesimples.dto.SummaryPlanningDTO;
 import com.atimat.planejesimples.services.PlanningService;
 
 @RestController
@@ -26,8 +27,8 @@ public class PlanningResource {
 	private PlanningService service;
 	
 	@GetMapping
-	public ResponseEntity<List<PlanningDTO>> findAll(){
-		List<PlanningDTO> list = service.findAll();
+	public ResponseEntity<List<SummaryPlanningDTO>> findAll(){
+		List<SummaryPlanningDTO> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	

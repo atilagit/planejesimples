@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.atimat.planejesimples.dto.PlanningDTO;
+import com.atimat.planejesimples.dto.SummaryPlanningDTO;
 import com.atimat.planejesimples.entities.Planning;
 import com.atimat.planejesimples.entities.User;
 import com.atimat.planejesimples.respositories.PlanningRepository;
@@ -30,9 +31,9 @@ public class PlanningService {
 	private UserRepository userRepository;
 
 	@Transactional(readOnly = true)
-	public List<PlanningDTO> findAll(){
+	public List<SummaryPlanningDTO> findAll(){
 		List<Planning> list = repository.findAll();
-		return list.stream().map(x -> new PlanningDTO(x)).collect(Collectors.toList());
+		return list.stream().map(x -> new SummaryPlanningDTO(x)).collect(Collectors.toList());
 	}
 
 	@Transactional(readOnly = true)
