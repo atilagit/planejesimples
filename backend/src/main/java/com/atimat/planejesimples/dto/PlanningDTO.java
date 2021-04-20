@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.atimat.planejesimples.entities.Item;
 import com.atimat.planejesimples.entities.Planning;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -20,7 +21,13 @@ public class PlanningDTO implements Serializable {
 	private Instant finalDate;
 	
 	private Double expectedEntry;
+	private Double totalExpectedSpend = 0.0;
+	private Double expectedResult = 0.0;
+
 	private Double realEntry;
+	private Double totalRealSpend = 0.0;
+	private Double realResult = 0.0;
+
 	private UserDTO user;
 	
 	private List<ItemDTO> items = new ArrayList<>();
@@ -29,13 +36,15 @@ public class PlanningDTO implements Serializable {
 	}
 
 	public PlanningDTO(Long id, Instant initialDate, Instant finalDate, Double expectedEntry, Double realEntry,
-			UserDTO user) {
+			UserDTO user, List<Item> items) {
 		this.id = id;
 		this.initialDate = initialDate;
 		this.finalDate = finalDate;
 		this.expectedEntry = expectedEntry;
 		this.realEntry = realEntry;
 		this.user = user;
+		items.forEach(item -> this.items.add(new ItemDTO(item)));
+		calculateData();
 	}
 	
 	public PlanningDTO(Planning entity) {
@@ -46,6 +55,7 @@ public class PlanningDTO implements Serializable {
 		this.realEntry = entity.getRealEntry();
 		this.user = new UserDTO(entity.getUser());
 		entity.getItems().forEach(item -> this.items.add(new ItemDTO(item)));
+		calculateData();
 	}
 
 	public Long getId() {
@@ -92,11 +102,52 @@ public class PlanningDTO implements Serializable {
 		return user;
 	}
 
+	public Double getTotalExpectedSpend() {
+		return totalExpectedSpend;
+	}
+
+	public void setTotalExpectedSpend(Double totalExpectedSpend) {
+		this.totalExpectedSpend = totalExpectedSpend;
+	}
+
+	public Double getExpectedResult() {
+		return expectedResult;
+	}
+
+	public void setExpectedResult(Double expectedResult) {
+		this.expectedResult = expectedResult;
+	}
+
+	public Double getTotalRealSpend() {
+		return totalRealSpend;
+	}
+
+	public void setTotalRealSpend(Double totalRealSpend) {
+		this.totalRealSpend = totalRealSpend;
+	}
+
+	public Double getRealResult() {
+		return realResult;
+	}
+
+	public void setRealResult(Double realResult) {
+		this.realResult = realResult;
+	}
+
 	public void setUser(UserDTO user) {
 		this.user = user;
 	}
 
 	public List<ItemDTO> getItems() {
 		return items;
+	}
+	
+	public void calculateData() {
+		for (ItemDTO item : items) {
+			totalExpectedSpend += item.getExpectancy();
+			totalRealSpend += item.getReality();
+		}
+		expectedResult = expectedEntry - totalExpectedSpend;
+		realResult = realEntry - totalRealSpend;
 	}
 }

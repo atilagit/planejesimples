@@ -1,11 +1,13 @@
 package com.atimat.planejesimples.dto;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 import com.atimat.planejesimples.entities.Item;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class ItemDTO {
+public class ItemDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	private String title;
@@ -14,7 +16,6 @@ public class ItemDTO {
 	private Instant dueDate;
 	private Double expectancy;
 	private Double reality;
-	private PlanningDTO planning;
 	
 	public ItemDTO() {
 	}
@@ -25,7 +26,6 @@ public class ItemDTO {
 		this.dueDate = dueDate;
 		this.expectancy = expectancy;
 		this.reality = reality;
-		this.planning = planning;
 	}
 	
 	public ItemDTO(Item entity) {
@@ -74,13 +74,5 @@ public class ItemDTO {
 
 	public void setReality(Double reality) {
 		this.reality = reality;
-	}
-
-	public PlanningDTO getPlanning() {
-		return planning;
-	}
-
-	public void setPlanning(PlanningDTO planning) {
-		this.planning = planning;
 	}
 }

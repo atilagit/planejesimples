@@ -12,6 +12,18 @@ insert into tb_planning (initial_Date, final_Date, expected_Entry, real_Entry, u
 insert into tb_planning (initial_Date, final_Date, expected_Entry, real_Entry, user_id) values (TIMESTAMP WITH TIME ZONE '2022-02-14T00:00:00Z',TIMESTAMP WITH TIME ZONE '2022-03-13T00:00:00Z',1500.00,1650.00,3);
 insert into tb_planning (initial_Date, final_Date, expected_Entry, real_Entry, user_id) values (TIMESTAMP WITH TIME ZONE '2022-03-14T00:00:00Z',TIMESTAMP WITH TIME ZONE '2022-04-13T00:00:00Z',1500.00,1650.00,3);
 
+insert into tb_item_name (name, user_Id) values ('Conta de Luz', null);
+insert into tb_item_name (name, user_Id) values ('Água', null);
+insert into tb_item_name (name, user_Id) values ('Gás', null);
+insert into tb_item_name (name, user_Id) values ('Aluguel', null);
+insert into tb_item_name (name, user_Id) values ('Carro Financiamento', null);
+insert into tb_item_name (name, user_Id) values ('Inglês', null);
+
+insert into tb_item_name (name, user_Id) values ('PetShop', 1);
+insert into tb_item_name (name, user_Id) values ('Curso Manicure', 2);
+insert into tb_item_name (name, user_Id) values ('Energia elétrica da casa do cachorrinho', 2);
+
+
 insert into tb_item (title, due_Date, expectancy, reality, planning_id) values ('Energia Elétrica', TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 1);
 insert into tb_item (title, due_Date, expectancy, reality, planning_id) values ('Água', TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 1);
 insert into tb_item (title, due_Date, expectancy, reality, planning_id) values ('Gás', null, 120.00, 135.00, 1);
