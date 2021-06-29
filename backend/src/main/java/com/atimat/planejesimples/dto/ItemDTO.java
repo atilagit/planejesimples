@@ -5,6 +5,7 @@ import java.time.Instant;
 
 import com.atimat.planejesimples.entities.Item;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ItemDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -17,23 +18,30 @@ public class ItemDTO implements Serializable {
 	private Double expectancy;
 	private Double reality;
 	
+	@JsonProperty("itemName")
+	private ItemNameDTO itemNameDTO;
+	private PlanningDTO planningDTO;
+	
 	public ItemDTO() {
 	}
 
-	public ItemDTO(Long id, String title, Instant dueDate, Double expectancy, Double reality, PlanningDTO planning) {
+	public ItemDTO(Long id, ItemNameDTO itemNameDTO, Instant dueDate, Double expectancy, Double reality, PlanningDTO planningDTO) {
 		this.id = id;
-		this.title = title;
+		this.itemNameDTO = itemNameDTO;
 		this.dueDate = dueDate;
 		this.expectancy = expectancy;
 		this.reality = reality;
+		this.planningDTO = planningDTO;
+		this.title = itemNameDTO.getName();
 	}
 	
 	public ItemDTO(Item entity) {
 		this.id = entity.getId();
-		this.title = entity.getTitle();
+		this.itemNameDTO = new ItemNameDTO(entity.getItemName());
 		this.dueDate = entity.getDueDate();
 		this.expectancy = entity.getExpectancy();
 		this.reality = entity.getReality();
+		this.title = entity.getItemName().getName();
 	}
 
 	public Long getId() {
@@ -74,5 +82,21 @@ public class ItemDTO implements Serializable {
 
 	public void setReality(Double reality) {
 		this.reality = reality;
+	}
+
+	public ItemNameDTO getItemNameDTO() {
+		return itemNameDTO;
+	}
+
+	public void setItemNameDTO(ItemNameDTO itemNameDTO) {
+		this.itemNameDTO = itemNameDTO;
+	}
+
+	public PlanningDTO getPlanningDTO() {
+		return planningDTO;
+	}
+
+	public void setPlanningDTO(PlanningDTO planningDTO) {
+		this.planningDTO = planningDTO;
 	}
 }

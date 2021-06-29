@@ -21,7 +21,6 @@ public class Item implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String title;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant dueDate;
@@ -39,10 +38,10 @@ public class Item implements Serializable{
 	public Item() {
 	}
 
-	public Item(Long id, String title, Instant dueDate, Double expectancy, Double reality, Planning planning) {
+	public Item(Long id, ItemName itemName, Instant dueDate, Double expectancy, Double reality, Planning planning) {
 		super();
 		this.id = id;
-		this.title = title;
+		this.itemName = itemName;
 		this.dueDate = dueDate;
 		this.expectancy = expectancy;
 		this.reality = reality;
@@ -55,14 +54,6 @@ public class Item implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public Instant getDueDate() {
@@ -95,6 +86,14 @@ public class Item implements Serializable{
 
 	public void setPlanning(Planning planning) {
 		this.planning = planning;
+	}
+
+	public ItemName getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(ItemName itemName) {
+		this.itemName = itemName;
 	}
 
 	@Override

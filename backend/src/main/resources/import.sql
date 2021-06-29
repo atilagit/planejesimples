@@ -17,19 +17,22 @@ insert into tb_item_name (name, user_Id) values ('Água', null);
 insert into tb_item_name (name, user_Id) values ('Gás', null);
 insert into tb_item_name (name, user_Id) values ('Aluguel', null);
 insert into tb_item_name (name, user_Id) values ('Carro Financiamento', null);
+insert into tb_item_name (name, user_Id) values ('PetShop', null);
+insert into tb_item_name (name, user_Id) values ('Curso Manicure', null);
 insert into tb_item_name (name, user_Id) values ('Inglês', null);
+insert into tb_item_name (name, user_Id) values ('Teste de um nome de item um pouco maior', null);
 
 insert into tb_item_name (name, user_Id) values ('PetShop', 1);
-insert into tb_item_name (name, user_Id) values ('Curso Manicure', 2);
+insert into tb_item_name (name, user_Id) values ('Cursinho Vestibular', 2);
 insert into tb_item_name (name, user_Id) values ('Energia elétrica da casa do cachorrinho', 2);
 
 
-insert into tb_item (title, due_Date, expectancy, reality, planning_id) values ('Energia Elétrica', TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 1);
-insert into tb_item (title, due_Date, expectancy, reality, planning_id) values ('Água', TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 1);
-insert into tb_item (title, due_Date, expectancy, reality, planning_id) values ('Gás', null, 120.00, 135.00, 1);
-insert into tb_item (title, due_Date, expectancy, reality, planning_id) values ('Aluguel', TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 1);
-insert into tb_item (title, due_Date, expectancy, reality, planning_id) values ('Carro Financiamento', TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 2);
-insert into tb_item (title, due_Date, expectancy, reality, planning_id) values ('PetShop', null, 120.00, 135.00, 2);
-insert into tb_item (title, due_Date, expectancy, reality, planning_id) values ('Curso Manicure', TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 2);
-insert into tb_item (title, due_Date, expectancy, reality, planning_id) values ('Curso Inglês', TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 2);
-insert into tb_item (title, due_Date, expectancy, reality, planning_id) values ('Teste de um nome de item um pouco maior', TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 2);
+insert into tb_item (item_name_id, due_Date, expectancy, reality, planning_id) values (1, TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 1);
+insert into tb_item (item_name_id, due_Date, expectancy, reality, planning_id) values (2, TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 1);
+insert into tb_item (item_name_id, due_Date, expectancy, reality, planning_id) values (3, null, 120.00, 135.00, 1);
+insert into tb_item (item_name_id, due_Date, expectancy, reality, planning_id) values (4, TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 1);
+insert into tb_item (item_name_id, due_Date, expectancy, reality, planning_id) values (5, TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 2);
+insert into tb_item (item_name_id, due_Date, expectancy, reality, planning_id) values (6, null, 120.00, 135.00, 2);
+insert into tb_item (item_name_id, due_Date, expectancy, reality, planning_id) values (7, TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 2);
+insert into tb_item (item_name_id, due_Date, expectancy, reality, planning_id) values (8, TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 2);
+insert into tb_item (item_name_id, due_Date, expectancy, reality, planning_id) values (9, TIMESTAMP WITH TIME ZONE '2021-07-14T00:00:00Z', 120.00, 135.00, 2);

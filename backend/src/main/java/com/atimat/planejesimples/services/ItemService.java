@@ -14,7 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.atimat.planejesimples.dto.ItemDTO;
 import com.atimat.planejesimples.entities.Item;
+import com.atimat.planejesimples.entities.ItemName;
+import com.atimat.planejesimples.entities.Planning;
+import com.atimat.planejesimples.respositories.ItemNameRepository;
 import com.atimat.planejesimples.respositories.ItemRepository;
+import com.atimat.planejesimples.respositories.PlanningRepository;
 import com.atimat.planejesimples.services.exceptions.DatabaseException;
 import com.atimat.planejesimples.services.exceptions.ResourceNotFoundException;
 
@@ -23,6 +27,12 @@ public class ItemService {
 	
 	@Autowired
 	private ItemRepository repository;
+	
+	@Autowired
+	private PlanningRepository planningRepository;
+	
+	@Autowired
+	private ItemNameRepository itemNameRepository;
 
 	@Transactional(readOnly = true)
 	public List<ItemDTO> findAll(){
@@ -34,6 +44,15 @@ public class ItemService {
 	public ItemDTO findById(Long id) {
 		Optional<Item> obj = repository.findById(id);
 		Item entity = obj.orElseThrow(() -> new ResourceNotFoundException("Planejamento não encontrado"));
+		return new ItemDTO(entity);
+	}
+	
+	@Transactional
+	public ItemDTO insert(ItemDTO dto) {
+		ItemName itemName = itemNameRepository.getOne(dto.getItemNameDTO().getId());
+		Planning planning = planningRepository.getOne(dto.getPlanningDTO().getId());
+		Item entity = new Item(null, itemName, dto.getDueDate(), dto.getExpectancy(), dto.getReality(), planning);
+		entity = repository.save(entity);
 		return new ItemDTO(entity);
 	}
 
@@ -60,7 +79,8 @@ public class ItemService {
 	}
 
 	private void updateEntity(ItemDTO dto, Item entity) {
-		entity.setTitle(dto.getTitle());
+		ItemName itemName = itemNameRepository.getOne(dto.getItemNameDTO().getId());
+		entity.setItemName(itemName);
 		entity.setExpectancy(dto.getExpectancy());
 		entity.setReality(dto.getReality());
 		entity.setDueDate(dto.getDueDate());
